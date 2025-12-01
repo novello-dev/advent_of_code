@@ -1,21 +1,20 @@
 position = 50
-count_zeros = 0
+zero_count = 0
 
-rotation_list = []
+rotations = []
 
 with open("challenge1_input.txt") as file:
     for line in file:
-        clean = line.strip("\n")
-        direction = clean[0]
-        numerical_value = clean[1:]
-        iteration_dict = {}
-        iteration_dict["Direction:"] = direction
-        iteration_dict["Value:"] = int(numerical_value)
-        rotation_list.append(iteration_dict)
+        direction = line[0]
+        numerical_value = line[1:]
+        move = {}
+        move["direction"] = direction
+        move["value"] = int(numerical_value)
+        rotations.append(move)
 
-for entry in rotation_list:
-    direction = entry["Direction:"]
-    value = entry["Value:"]
+for entry in rotations:
+    direction = entry["direction"]
+    value = entry["value"]
     if direction == "L":
         position -= value
         while position < 0:
@@ -25,6 +24,6 @@ for entry in rotation_list:
         while position > 99:
             position = position - 100
     if position == 0:
-        count_zeros += 1
+        zero_count += 1
 
-print(count_zeros)
+print(zero_count)
